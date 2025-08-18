@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./globaldemo.js"></script>
+       <script src="./index.js"></script>
+       <style>
+            h1{
+
+            }
+            #main{
+
+            }
+            .titre{
+
+            }
+            h1.titre{
+
+            }
+            #main.titre{
+
+            }
+            #main, .titre{
+
+            }
+            #main .titre{
+
+            }
+
+            table.data td{
+
+            }
+
+            #main>.titre{
+
+            }
+            #main+.titre{
+
+            }
+
+       </style>
+</head>
+<body>
+
+    <h1>Ma page</h1>
+    <p>L'heure est : <span id="span_heure"></span>
+            <!-- 
+            pas conseillé car mélange js avec html
+            <script>document.write("<b>"+new Date().toString()+"</b>")</script> -->
+    </p>
+
+    <!-- Quand on clicke sur le buton => ajouter une * au div -->
+    <button id="button_add_score">Click me</button>
+    <div id="div_score"></div>
+
+    <script>
+        // Attention à l'accès aux variables globales définies ailleurs
+        b=b+1;
+    </script>
+
+</body>
+</html>
