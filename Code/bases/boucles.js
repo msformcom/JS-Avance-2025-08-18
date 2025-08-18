@@ -17,7 +17,7 @@ let tab3=new Array();
 
 var i=8;
 
-
+// Boucle sur les éléments du tableau
 for(let i=0;i<tab.length;i++){
     let e=tab[i];
 
@@ -35,6 +35,7 @@ for(let e in tab){
 
 var o1={a:1,b:2};
 
+// Affiche les propriétés de l'objet
 for(let e in o1){
     console.log(e);
 }

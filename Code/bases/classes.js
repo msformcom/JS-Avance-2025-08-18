@@ -1,13 +1,14 @@
-// Syntaxe récente 
-class Voiture{
+// Syntaxe récente de classe et de module (syntaxe ES)
+export class Voiture{
     constructor(marque){
         this.marque=marque;
     }
-
 }
 
+export const valeur=5;
+
 // Syntaxe ancienne
-function Camion(marque){
+export function Camion(marque){
     // this => instance de la classe
     this.marque=marque;
 }
@@ -19,3 +20,4 @@ function menage(){
 
 let c=new Camion("Peugeot");
 console.log(c.marque);
+
