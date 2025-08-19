@@ -54,8 +54,10 @@ server.get("/sun/info/rise/:lat/:lon",(req,res)=>{
     let lon=+req.params["lon"];//"0.660169"
     let latOpposee=-lat;
     let lonOpposee=lon+180; // "0.660169" + 180 = 
-    let infos=SunCalc.getTimes(new Date(),latOpposee,lonOpposee);
-    res.send(infos);
+    let infos=SunCalc.getTimes(new Date(),lat,lon);
+
+    res.send(infos); //     res.contentType="application/json"
+    
 });
 
 
