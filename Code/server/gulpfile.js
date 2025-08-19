@@ -4,6 +4,12 @@ const gulp=require("gulp");
 const uglify=require("gulp-uglify");
 // npm i gulp-typescript typescript --save-dev
 const ts = require('gulp-typescript');
+// npm i gulp-imagemin --save-dev
+//const imagemin =import("gulp-imagemin") ;
+
+const dartSass =require( 'sass');
+const gulpSass =require( 'gulp-sass');
+const sass = gulpSass(dartSass);
 
 // definition d'une tache copie des html
 gulp.task("html",()=>{
@@ -40,4 +46,15 @@ gulp.task("ts",()=>{
 });
 
 
-gulp.task("default", gulp.parallel(["html","js","ts"]));
+gulp.task("scss",()=>{
+    // Source : les fichiers jpg
+    
+    return  gulp.src("./src/**/*.scss")
+    // minification + obfuscation
+     .pipe(sass().on('error', sass.logError))
+
+    // écriture dans la destination
+     .pipe(gulp.dest("./wwwroot"));
+});
+
+gulp.task("default", gulp.parallel(["html","js","ts","scss"]));
