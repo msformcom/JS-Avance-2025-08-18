@@ -2,6 +2,8 @@
 const gulp=require("gulp");
 // npm i gulp-uglify --save-dev
 const uglify=require("gulp-uglify");
+// npm i gulp-typescript typescript --save-dev
+const ts = require('gulp-typescript');
 
 // definition d'une tache copie des html
 gulp.task("html",()=>{
@@ -21,3 +23,21 @@ gulp.task("js",()=>{
      .pipe(gulp.dest("./wwwroot"));
 });
 
+// Création d'un fichier tsconfig 
+// npx tsc --init à la racine du projet => tsconfig.json
+
+
+const tsProject=ts.createProject("tsconfig.json");
+gulp.task("ts",()=>{
+    // Source : les fichiers js
+    
+    return  gulp.src("./src/**/*.ts")
+    // minification + obfuscation
+    .pipe(tsProject())
+    .pipe(uglify())
+    // écriture dans la destination
+     .pipe(gulp.dest("./wwwroot"));
+});
+
+
+gulp.task("default", gulp.parallel(["html","js","ts"]));
