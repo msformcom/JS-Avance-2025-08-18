@@ -1,0 +1,1 @@
+self.addEventListener("message",e=>{var a=e.data.a,t=e.data.b;let s=0;for(let e=0;e<a;e++)s++;for(let e=0;e<t;e++)s++;postMessage(s)});
