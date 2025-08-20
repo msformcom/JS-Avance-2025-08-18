@@ -26,3 +26,6 @@ for(let e in o5){
     console.log(e);
 }
 
+let o={a:1,b:2,c:4,d:5};
+let {d:c,c:d}=o;
+console.log(c);
