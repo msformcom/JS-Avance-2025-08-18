@@ -1,0 +1,1 @@
+import{fromEvent,throttleTime}from"https://esm.sh/rxjs@7.8.1";document.addEventListener("DOMContentLoaded",()=>{var e=document.querySelector("#surface");fromEvent(e,"mousemove").pipe(throttleTime(500)).subscribe(e=>{console.log(e)})});

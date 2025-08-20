@@ -12,6 +12,10 @@ const newer =require( 'gulp-newer');
 const gulpSass =require( 'gulp-sass');
 const sharpResponsive =require( "gulp-sharp-responsive");
 const rename = require("gulp-rename");
+const replace = require("gulp-replace");
+// Va permettre d'ajouter des commentaires spéciaux aux fichiers js
+// qui seront utilisés par l'interpreteur pour montrer le code source en debug
+const sourcemaps=require("gulp-sourcemaps");
 
 const destination="./wwwroot";
 const source="./src";
@@ -22,7 +26,10 @@ const sass = gulpSass(dartSass);
 gulp.task("html",()=>{
     // Aller chercher les fichiers html dans le dossier src
     return  gulp.src(source+"/**/*.html")
+
     .pipe(newer(destination))
+    //.pipe(replace(/src="(\w*).ts"/g,'src="$1.js"'))
+    
     // les copier dans le dossier wwwwroot
     .pipe(gulp.dest(destination));
 });
@@ -33,6 +40,7 @@ gulp.task("js",()=>{
         .pipe(newer(destination))
     // minification + obfuscation
     .pipe(uglify())
+    
     // écriture dans la destination
      .pipe(gulp.dest(destination));
 });
@@ -47,9 +55,13 @@ gulp.task("ts",()=>{
     
     return  gulp.src(source+"/**/*.ts")
         .pipe(newer(destination))
+        // Ici je demande à sourcemaps de retenir le code source
+        .pipe(sourcemaps.init())
     // minification + obfuscation
     .pipe(tsProject())
     .pipe(uglify())
+     // Ici je demande à sourcemaps d'ecrire les commentaires mappant le code source au code généré
+    .pipe(sourcemaps.write())
     // écriture dans la destination
      .pipe(gulp.dest(destination));
 });
